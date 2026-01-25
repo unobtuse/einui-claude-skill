@@ -1,0 +1,9 @@
+{
+  "name": "einui",
+  "description": "Ein UI component library integration for React/Next.js projects. Provides guidance on installing and using liquid glass morphism components built on Shadcn/Radix UI with Tailwind CSS v4.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Community",
+    "url": "https://ui.eindev.ir"
+  }
+}
