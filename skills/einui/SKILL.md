@@ -286,17 +286,37 @@ Check ThemeProvider wraps the application and `attribute="class"` is set.
 ### Missing Peer Dependencies
 Many components need framer-motion, lucide-react, or class-variance-authority. Check console errors.
 
+## Custom Themes from OKLCH Palettes
+
+Create custom color themes using [OKLCH Color Palette Generator](https://gloss-modern-smile.figma.site/):
+
+1. Generate a palette on the site (set anchor color, export JSON)
+2. Run the converter: `npx ts-node scripts/palette-to-einui.ts palette.json > theme.css`
+3. Import the generated CSS in your project
+
+Or use the simple format with just a primary color:
+```json
+{ "name": "brand", "primary": "#6366f1" }
+```
+
+See `references/custom-themes.md` for full documentation.
+
 ## Additional Resources
 
 ### Reference Files
 - **`references/components-catalog.md`** - Complete component documentation with all 42 components
 - **`references/component-api.md`** - TypeScript interfaces and props reference
 - **`references/theming-guide.md`** - CSS variables and customization
+- **`references/custom-themes.md`** - OKLCH palette to Ein UI theme conversion
 - **`references/installation-patterns.md`** - Project setup patterns
 - **`references/blocks-guide.md`** - Pre-built page blocks documentation
+
+### Scripts
+- **`scripts/palette-to-einui.ts`** - Convert OKLCH palettes to Ein UI CSS variables
 
 ### Example Files
 - **`examples/form-patterns.tsx`** - Complete form examples
 - **`examples/dashboard-layout.tsx`** - Dashboard with widgets
 - **`examples/command-palette-setup.tsx`** - Command palette integration
+- **`examples/ocean-palette.json`** - Example OKLCH palette
 - **`examples/dark-mode-setup.md`** - Dark mode configuration

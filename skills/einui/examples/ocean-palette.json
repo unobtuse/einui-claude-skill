@@ -1,0 +1,27 @@
+{
+  "name": "ocean",
+  "anchor": {
+    "hex": "#0f74c5",
+    "oklch": { "l": 0.55, "c": 0.15, "h": 250 }
+  },
+  "colors": [
+    { "index": 0, "hex": "#000008", "oklch": { "l": 0.05, "c": 0.05, "h": 250 } },
+    { "index": 1, "hex": "#000017", "oklch": { "l": 0.08, "c": 0.08, "h": 250 } },
+    { "index": 2, "hex": "#000035", "oklch": { "l": 0.14, "c": 0.12, "h": 250 } },
+    { "index": 3, "hex": "#001354", "oklch": { "l": 0.22, "c": 0.13, "h": 250 } },
+    { "index": 4, "hex": "#00337b", "oklch": { "l": 0.33, "c": 0.14, "h": 250 } },
+    { "index": 5, "hex": "#005caa", "oklch": { "l": 0.47, "c": 0.15, "h": 250 } },
+    { "index": 6, "hex": "#2f8add", "oklch": { "l": 0.62, "c": 0.15, "h": 250 } },
+    { "index": 7, "hex": "#56b2ff", "oklch": { "l": 0.75, "c": 0.16, "h": 250 } },
+    { "index": 8, "hex": "#6fd3ff", "oklch": { "l": 0.85, "c": 0.17, "h": 250 } },
+    { "index": 9, "hex": "#98ecff", "oklch": { "l": 0.92, "c": 0.14, "h": 250 } },
+    { "index": 10, "hex": "#d9faff", "oklch": { "l": 0.97, "c": 0.06, "h": 250 } },
+    { "index": 11, "hex": "#e5ffff", "oklch": { "l": 1.00, "c": 0.05, "h": 250 } }
+  ],
+  "settings": {
+    "colorCount": 12,
+    "lightnessRange": { "min": 0.05, "max": 1.00 },
+    "curveType": "quadratic",
+    "direction": "ease-out"
+  }
+}
