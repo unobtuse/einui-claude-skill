@@ -151,12 +151,19 @@ Complete CSS variable configuration and customization reference.
   --glass-bg: rgba(0, 0, 0, 0.3);
   --glass-border: rgba(255, 255, 255, 0.08);
   --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.7);
 }
 
 .light {
-  --glass-bg: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(0, 0, 0, 0.1);
+  /* Subtle glass effect for light backgrounds */
+  --glass-bg: rgba(0, 0, 0, 0.03);
+  --glass-border: rgba(0, 0, 0, 0.08);
   --text-primary: rgba(0, 0, 0, 0.9);
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  
+  /* Softer glows for light mode */
+  --glow-cyan: rgba(6, 182, 212, 0.15);
+  --glow-purple: rgba(147, 51, 234, 0.15);
 }
 ```
 

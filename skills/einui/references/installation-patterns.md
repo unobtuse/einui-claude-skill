@@ -47,6 +47,23 @@ export default config
 
 ### 4. Add Ein UI Components
 
+**Method 1: Direct Registry URL (Recommended)**
+```bash
+npx shadcn@latest add "https://ui.eindev.ir/r/glass-card.json" "https://ui.eindev.ir/r/glass-button.json"
+```
+
+**Method 2: Registry Namespace**
+
+First add the registry to `components.json`:
+```json
+{
+  "registries": {
+    "@einui": "https://ui.eindev.ir/r/{name}"
+  }
+}
+```
+
+Then install with namespace:
 ```bash
 npx shadcn@latest add @einui/glass-card @einui/glass-button
 ```
