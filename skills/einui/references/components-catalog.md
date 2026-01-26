@@ -1,274 +1,799 @@
 # Ein UI Components Catalog
 
-Complete reference for all Ein UI liquid glass components.
+Complete reference for all Ein UI liquid glass components. Install via shadcn CLI using the registry URLs.
 
-## Core Components (11)
+## Installation
 
-### Glass Card
-**Install:** `npx shadcn@latest add @einui/glass-card`
+```bash
+# Single component
+npx shadcn@latest add "https://ui.eindev.ir/r/glass-card.json"
 
-Frosted glass container with backdrop blur and subtle borders. Supports variants: default, glow, solid.
-
-```tsx
-import { GlassCard } from '@/components/liquid-glass/glass-card'
-
-<GlassCard variant="glow" className="p-6">
-  <h3>Card Title</h3>
-  <p>Card content with glass effect</p>
-</GlassCard>
+# Multiple components
+npx shadcn@latest add "https://ui.eindev.ir/r/glass-card.json" "https://ui.eindev.ir/r/glass-button.json"
 ```
 
-### Glass Button
-**Install:** `npx shadcn@latest add @einui/glass-button`
+---
 
-Interactive button with glass morphism styling. Variants: default, glow, outline, ghost.
+## Liquid Glass Core Components (23)
+
+### glass-avatar
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-avatar.json"`
+**Dependencies:** `@radix-ui/react-avatar`
+
+Circular profile images with gradient glow effects and fallback initials for user representation.
+
+```tsx
+import { GlassAvatar, GlassAvatarImage, GlassAvatarFallback } from '@/components/liquid-glass/glass-avatar'
+
+<GlassAvatar>
+  <GlassAvatarImage src="/avatar.jpg" alt="User" />
+  <GlassAvatarFallback>JD</GlassAvatarFallback>
+</GlassAvatar>
+```
+
+### glass-badge
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-badge.json"`
+**Dependencies:** `class-variance-authority`
+
+Small visual indicators for status, labels, or categories with frosted glass styling and color variants.
+
+```tsx
+import { GlassBadge } from '@/components/liquid-glass/glass-badge'
+
+<GlassBadge variant="default">New</GlassBadge>
+<GlassBadge variant="secondary">Beta</GlassBadge>
+<GlassBadge variant="destructive">Error</GlassBadge>
+<GlassBadge variant="outline">Draft</GlassBadge>
+```
+
+### glass-button
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-button.json"`
+**Dependencies:** `@radix-ui/react-slot`, `class-variance-authority`
+
+Interactive button components with multiple variants, sizes, and optional glow effects.
 
 ```tsx
 import { GlassButton } from '@/components/liquid-glass/glass-button'
 
-<GlassButton variant="glow" size="lg">
-  Click Me
-</GlassButton>
+<GlassButton variant="default">Default</GlassButton>
+<GlassButton variant="glow">Glow Effect</GlassButton>
+<GlassButton variant="outline">Outline</GlassButton>
+<GlassButton variant="ghost">Ghost</GlassButton>
+<GlassButton size="sm">Small</GlassButton>
+<GlassButton size="lg">Large</GlassButton>
 ```
 
-### Glass Input
-**Install:** `npx shadcn@latest add @einui/glass-input`
+### glass-card
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-card.json"`
 
-Text input with frosted glass background and focus glow effects.
+Flexible container components with frosted glass morphism effect, perfect for displaying grouped content.
 
 ```tsx
-import { GlassInput } from '@/components/liquid-glass/glass-input'
+import { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardDescription, GlassCardContent, GlassCardFooter } from '@/components/liquid-glass/glass-card'
 
-<GlassInput placeholder="Enter email..." type="email" />
+<GlassCard>
+  <GlassCardHeader>
+    <GlassCardTitle>Card Title</GlassCardTitle>
+    <GlassCardDescription>Card description text</GlassCardDescription>
+  </GlassCardHeader>
+  <GlassCardContent>
+    <p>Main content goes here</p>
+  </GlassCardContent>
+  <GlassCardFooter>
+    <GlassButton>Action</GlassButton>
+  </GlassCardFooter>
+</GlassCard>
 ```
 
-### Glass Dialog
-**Install:** `npx shadcn@latest add @einui/glass-dialog`
+### glass-dialog
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-dialog.json"`
+**Dependencies:** `@radix-ui/react-dialog`, `lucide-react`
 
-Modal dialog with glass backdrop and animated entrance.
+Modal dialog components with backdrop blur and smooth animations for confirmations and forms.
 
 ```tsx
 import {
   GlassDialog,
   GlassDialogTrigger,
-  GlassDialogContent
+  GlassDialogContent,
+  GlassDialogHeader,
+  GlassDialogTitle,
+  GlassDialogDescription,
+  GlassDialogFooter,
+  GlassDialogClose
 } from '@/components/liquid-glass/glass-dialog'
 
 <GlassDialog>
-  <GlassDialogTrigger>Open</GlassDialogTrigger>
+  <GlassDialogTrigger asChild>
+    <GlassButton>Open Dialog</GlassButton>
+  </GlassDialogTrigger>
   <GlassDialogContent>
-    <h2>Dialog Title</h2>
+    <GlassDialogHeader>
+      <GlassDialogTitle>Dialog Title</GlassDialogTitle>
+      <GlassDialogDescription>Dialog description</GlassDialogDescription>
+    </GlassDialogHeader>
+    <div>Content here</div>
+    <GlassDialogFooter>
+      <GlassDialogClose asChild>
+        <GlassButton variant="outline">Cancel</GlassButton>
+      </GlassDialogClose>
+      <GlassButton>Confirm</GlassButton>
+    </GlassDialogFooter>
   </GlassDialogContent>
 </GlassDialog>
 ```
 
-### Glass Tabs
-**Install:** `npx shadcn@latest add @einui/glass-tabs`
+### glass-input
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-input.json"`
 
-Tab navigation with glass-styled indicators.
+Form input components with focus glow animations and glass morphism styling.
 
-### Badge
-**Install:** `npx shadcn@latest add @einui/badge`
+```tsx
+import { GlassInput } from '@/components/liquid-glass/glass-input'
 
-Status indicators with glass styling. Variants: default, secondary, destructive, outline.
+<GlassInput type="text" placeholder="Enter your name" />
+<GlassInput type="email" placeholder="email@example.com" />
+<GlassInput type="password" placeholder="Password" />
+<GlassInput disabled placeholder="Disabled input" />
+```
 
-### Avatar
-**Install:** `npx shadcn@latest add @einui/avatar`
+### glass-progress
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-progress.json"`
+**Dependencies:** `@radix-ui/react-progress`
 
-User avatars with glass border effects.
+Visual indicators for task completion with animated gradient fill and glow effects.
 
-### Progress
-**Install:** `npx shadcn@latest add @einui/progress`
+```tsx
+import { GlassProgress } from '@/components/liquid-glass/glass-progress'
 
-Progress bars with animated glass fill.
+<GlassProgress value={33} />
+<GlassProgress value={66} />
+<GlassProgress value={100} />
+```
 
-### Switch
-**Install:** `npx shadcn@latest add @einui/switch`
+### glass-slider
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-slider.json"`
+**Dependencies:** `@radix-ui/react-slider`
 
-Toggle switches with glass morphism.
+Range input controls with gradient track, glow effects, and smooth thumb interaction.
 
-### Slider
-**Install:** `npx shadcn@latest add @einui/slider`
+```tsx
+import { GlassSlider } from '@/components/liquid-glass/glass-slider'
 
-Range sliders with glass track and thumb.
+<GlassSlider defaultValue={[50]} max={100} step={1} />
+<GlassSlider defaultValue={[25, 75]} max={100} step={1} /> {/* Range */}
+```
 
-### Tooltip
-**Install:** `npx shadcn@latest add @einui/tooltip`
+### glass-switch
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-switch.json"`
+**Dependencies:** `@radix-ui/react-switch`
 
-Hover tooltips with glass background.
+Toggle controls for binary options with smooth transitions and glow effects when activated.
 
----
+```tsx
+import { GlassSwitch } from '@/components/liquid-glass/glass-switch'
 
-## Form Components (4)
+<GlassSwitch />
+<GlassSwitch defaultChecked />
+<GlassSwitch disabled />
+```
 
-### Select
-**Install:** `npx shadcn@latest add @einui/select`
+### glass-tabs
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-tabs.json"`
+**Dependencies:** `@radix-ui/react-tabs`, `framer-motion`
 
-Dropdown select with glass-styled options panel.
+Tabbed interface components with smooth transitions and glass morphism styling.
 
-### Textarea
-**Install:** `npx shadcn@latest add @einui/textarea`
+```tsx
+import { GlassTabs, GlassTabsList, GlassTabsTrigger, GlassTabsContent } from '@/components/liquid-glass/glass-tabs'
 
-Multi-line text input with glass styling.
+<GlassTabs defaultValue="tab1">
+  <GlassTabsList>
+    <GlassTabsTrigger value="tab1">Tab 1</GlassTabsTrigger>
+    <GlassTabsTrigger value="tab2">Tab 2</GlassTabsTrigger>
+  </GlassTabsList>
+  <GlassTabsContent value="tab1">Content for tab 1</GlassTabsContent>
+  <GlassTabsContent value="tab2">Content for tab 2</GlassTabsContent>
+</GlassTabs>
+```
 
-### Checkbox
-**Install:** `npx shadcn@latest add @einui/checkbox`
+### glass-tooltip
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-tooltip.json"`
+**Dependencies:** `@radix-ui/react-tooltip`
 
-Checkbox inputs with glass check indicator.
+Contextual information popups with glass morphism styling and smooth animations on hover.
 
-### Radio
-**Install:** `npx shadcn@latest add @einui/radio`
+```tsx
+import { GlassTooltip, GlassTooltipTrigger, GlassTooltipContent, GlassTooltipProvider } from '@/components/liquid-glass/glass-tooltip'
 
-Radio button groups with glass styling.
+<GlassTooltipProvider>
+  <GlassTooltip>
+    <GlassTooltipTrigger>Hover me</GlassTooltipTrigger>
+    <GlassTooltipContent>
+      <p>Tooltip content</p>
+    </GlassTooltipContent>
+  </GlassTooltip>
+</GlassTooltipProvider>
+```
 
----
+### glass-select
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-select.json"`
+**Dependencies:** `@radix-ui/react-select`, `lucide-react`
 
-## Data Display Components (4)
+Dropdown select with frosted glass styling.
 
-### Skeleton
-**Install:** `npx shadcn@latest add @einui/skeleton`
+```tsx
+import {
+  GlassSelect,
+  GlassSelectTrigger,
+  GlassSelectValue,
+  GlassSelectContent,
+  GlassSelectItem
+} from '@/components/liquid-glass/glass-select'
 
-Loading placeholders with glass shimmer effect.
+<GlassSelect>
+  <GlassSelectTrigger>
+    <GlassSelectValue placeholder="Select option" />
+  </GlassSelectTrigger>
+  <GlassSelectContent>
+    <GlassSelectItem value="option1">Option 1</GlassSelectItem>
+    <GlassSelectItem value="option2">Option 2</GlassSelectItem>
+    <GlassSelectItem value="option3">Option 3</GlassSelectItem>
+  </GlassSelectContent>
+</GlassSelect>
+```
 
-### Table
-**Install:** `npx shadcn@latest add @einui/table`
+### glass-textarea
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-textarea.json"`
+**Dependencies:** `framer-motion`
 
-Data tables with glass headers and row styling.
+Multi-line text input with focus glow effects.
 
-### Separator
-**Install:** `npx shadcn@latest add @einui/separator`
+```tsx
+import { GlassTextarea } from '@/components/liquid-glass/glass-textarea'
 
-Visual dividers with glass gradient.
+<GlassTextarea placeholder="Enter your message..." rows={4} />
+```
 
-### Scroll Area
-**Install:** `npx shadcn@latest add @einui/scroll-area`
+### glass-checkbox
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-checkbox.json"`
+**Dependencies:** `@radix-ui/react-checkbox`, `framer-motion`, `lucide-react`
+
+Checkbox with animated check indicator.
+
+```tsx
+import { GlassCheckbox } from '@/components/liquid-glass/glass-checkbox'
+
+<div className="flex items-center gap-2">
+  <GlassCheckbox id="terms" />
+  <label htmlFor="terms">Accept terms and conditions</label>
+</div>
+```
+
+### glass-radio
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-radio.json"`
+**Dependencies:** `@radix-ui/react-radio-group`, `framer-motion`
+
+Radio group with animated selection.
+
+```tsx
+import { GlassRadioGroup, GlassRadioGroupItem } from '@/components/liquid-glass/glass-radio'
+
+<GlassRadioGroup defaultValue="option1">
+  <div className="flex items-center gap-2">
+    <GlassRadioGroupItem value="option1" id="r1" />
+    <label htmlFor="r1">Option 1</label>
+  </div>
+  <div className="flex items-center gap-2">
+    <GlassRadioGroupItem value="option2" id="r2" />
+    <label htmlFor="r2">Option 2</label>
+  </div>
+</GlassRadioGroup>
+```
+
+### glass-skeleton
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-skeleton.json"`
+**Dependencies:** `framer-motion`
+
+Loading placeholder with shimmer effect.
+
+```tsx
+import { GlassSkeleton } from '@/components/liquid-glass/glass-skeleton'
+
+<GlassSkeleton className="h-4 w-[250px]" />
+<GlassSkeleton className="h-4 w-[200px]" />
+<GlassSkeleton className="h-12 w-12 rounded-full" />
+```
+
+### glass-table
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-table.json"`
+
+Data table with glass headers and row styling.
+
+```tsx
+import {
+  GlassTable,
+  GlassTableHeader,
+  GlassTableBody,
+  GlassTableRow,
+  GlassTableHead,
+  GlassTableCell
+} from '@/components/liquid-glass/glass-table'
+
+<GlassTable>
+  <GlassTableHeader>
+    <GlassTableRow>
+      <GlassTableHead>Name</GlassTableHead>
+      <GlassTableHead>Status</GlassTableHead>
+    </GlassTableRow>
+  </GlassTableHeader>
+  <GlassTableBody>
+    <GlassTableRow>
+      <GlassTableCell>Item 1</GlassTableCell>
+      <GlassTableCell>Active</GlassTableCell>
+    </GlassTableRow>
+  </GlassTableBody>
+</GlassTable>
+```
+
+### glass-breadcrumb
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-breadcrumb.json"`
+**Dependencies:** `lucide-react`
+
+Breadcrumb navigation component.
+
+```tsx
+import {
+  GlassBreadcrumb,
+  GlassBreadcrumbList,
+  GlassBreadcrumbItem,
+  GlassBreadcrumbLink,
+  GlassBreadcrumbSeparator,
+  GlassBreadcrumbPage
+} from '@/components/liquid-glass/glass-breadcrumb'
+
+<GlassBreadcrumb>
+  <GlassBreadcrumbList>
+    <GlassBreadcrumbItem>
+      <GlassBreadcrumbLink href="/">Home</GlassBreadcrumbLink>
+    </GlassBreadcrumbItem>
+    <GlassBreadcrumbSeparator />
+    <GlassBreadcrumbItem>
+      <GlassBreadcrumbLink href="/products">Products</GlassBreadcrumbLink>
+    </GlassBreadcrumbItem>
+    <GlassBreadcrumbSeparator />
+    <GlassBreadcrumbItem>
+      <GlassBreadcrumbPage>Current Page</GlassBreadcrumbPage>
+    </GlassBreadcrumbItem>
+  </GlassBreadcrumbList>
+</GlassBreadcrumb>
+```
+
+### glass-sheet
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-sheet.json"`
+**Dependencies:** `@radix-ui/react-dialog`, `class-variance-authority`, `lucide-react`
+
+Slide-out drawer/panel with glass morphism.
+
+```tsx
+import {
+  GlassSheet,
+  GlassSheetTrigger,
+  GlassSheetContent,
+  GlassSheetHeader,
+  GlassSheetTitle,
+  GlassSheetDescription
+} from '@/components/liquid-glass/glass-sheet'
+
+<GlassSheet>
+  <GlassSheetTrigger asChild>
+    <GlassButton>Open Sheet</GlassButton>
+  </GlassSheetTrigger>
+  <GlassSheetContent side="right">
+    <GlassSheetHeader>
+      <GlassSheetTitle>Sheet Title</GlassSheetTitle>
+      <GlassSheetDescription>Sheet description</GlassSheetDescription>
+    </GlassSheetHeader>
+    <div>Sheet content</div>
+  </GlassSheetContent>
+</GlassSheet>
+```
+
+### glass-popover
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-popover.json"`
+**Dependencies:** `@radix-ui/react-popover`
+
+Floating popover with glass background.
+
+```tsx
+import { GlassPopover, GlassPopoverTrigger, GlassPopoverContent } from '@/components/liquid-glass/glass-popover'
+
+<GlassPopover>
+  <GlassPopoverTrigger asChild>
+    <GlassButton>Open Popover</GlassButton>
+  </GlassPopoverTrigger>
+  <GlassPopoverContent>
+    <p>Popover content here</p>
+  </GlassPopoverContent>
+</GlassPopover>
+```
+
+### glass-alert-dialog
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-alert-dialog.json"`
+**Dependencies:** `@radix-ui/react-alert-dialog`
+**Registry Dependencies:** `glass-button`
+
+Confirmation dialog with glass backdrop.
+
+```tsx
+import {
+  GlassAlertDialog,
+  GlassAlertDialogTrigger,
+  GlassAlertDialogContent,
+  GlassAlertDialogHeader,
+  GlassAlertDialogTitle,
+  GlassAlertDialogDescription,
+  GlassAlertDialogFooter,
+  GlassAlertDialogCancel,
+  GlassAlertDialogAction
+} from '@/components/liquid-glass/glass-alert-dialog'
+
+<GlassAlertDialog>
+  <GlassAlertDialogTrigger asChild>
+    <GlassButton variant="destructive">Delete</GlassButton>
+  </GlassAlertDialogTrigger>
+  <GlassAlertDialogContent>
+    <GlassAlertDialogHeader>
+      <GlassAlertDialogTitle>Are you sure?</GlassAlertDialogTitle>
+      <GlassAlertDialogDescription>
+        This action cannot be undone.
+      </GlassAlertDialogDescription>
+    </GlassAlertDialogHeader>
+    <GlassAlertDialogFooter>
+      <GlassAlertDialogCancel>Cancel</GlassAlertDialogCancel>
+      <GlassAlertDialogAction>Continue</GlassAlertDialogAction>
+    </GlassAlertDialogFooter>
+  </GlassAlertDialogContent>
+</GlassAlertDialog>
+```
+
+### glass-separator
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-separator.json"`
+**Dependencies:** `@radix-ui/react-separator`
+
+Visual divider with glass gradient.
+
+```tsx
+import { GlassSeparator } from '@/components/liquid-glass/glass-separator'
+
+<GlassSeparator />
+<GlassSeparator orientation="vertical" className="h-4" />
+```
+
+### glass-scroll-area
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-scroll-area.json"`
+**Dependencies:** `@radix-ui/react-scroll-area`
 
 Custom scrollbar with glass styling.
 
----
-
-## Overlay Components (3)
-
-### Alert Dialog
-**Install:** `npx shadcn@latest add @einui/alert-dialog`
-
-Confirmation dialogs with glass backdrop.
-
-### Sheet
-**Install:** `npx shadcn@latest add @einui/sheet`
-
-Slide-out panels with glass morphism.
-
-### Popover
-**Install:** `npx shadcn@latest add @einui/popover`
-
-Floating popovers with glass background.
-
----
-
-## Widget Components (5)
-
-### Weather Widget
-**Install:** `npx shadcn@latest add @einui/weather`
-
-Weather display card with glass styling and animated icons.
-
-### Calendar Widget
-**Install:** `npx shadcn@latest add @einui/calendar`
-
-Date picker calendar with glass day cells.
-
-### Clock Widget
-**Install:** `npx shadcn@latest add @einui/clock`
-
-Analog/digital clock with glass face.
-
-### Stocks Widget
-**Install:** `npx shadcn@latest add @einui/stocks`
-
-Stock ticker with glass card styling.
-
-### Stats Widget
-**Install:** `npx shadcn@latest add @einui/stats`
-
-Statistics display with glass containers.
-
----
-
-## Innovative Components (7)
-
-### Command Palette
-**Install:** `npx shadcn@latest add @einui/command`
-
-Keyboard-navigable command menu with glass styling.
-
 ```tsx
-import { Command } from '@/components/liquid-glass/command'
+import { GlassScrollArea } from '@/components/liquid-glass/glass-scroll-area'
 
-<Command>
-  <CommandInput placeholder="Search..." />
-  <CommandList>
-    <CommandItem>Action 1</CommandItem>
-    <CommandItem>Action 2</CommandItem>
-  </CommandList>
-</Command>
+<GlassScrollArea className="h-[200px] w-[350px] rounded-md border p-4">
+  <div>Long scrollable content here...</div>
+</GlassScrollArea>
 ```
 
-### Morph Card
-**Install:** `npx shadcn@latest add @einui/morph-card`
+---
+
+## Innovative Components (8)
+
+### glass-command-palette
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-command-palette.json"`
+**Dependencies:** `lucide-react`
+
+Spotlight-style command palette with keyboard navigation, search filtering, and customizable positioning.
+
+```tsx
+import { GlassCommandPalette } from '@/components/innovative/glass-command-palette'
+
+// Basic usage - typically controlled by keyboard shortcut (Cmd+K)
+<GlassCommandPalette
+  open={open}
+  onOpenChange={setOpen}
+  commands={[
+    { id: '1', label: 'Search...', icon: Search, action: () => {} },
+    { id: '2', label: 'Settings', icon: Settings, action: () => {} },
+  ]}
+/>
+```
+
+### glass-notification
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-notification.json"`
+**Dependencies:** `lucide-react`
+
+Customizable notification/toast system with glass morphism styling.
+
+```tsx
+import { GlassNotification } from '@/components/innovative/glass-notification'
+
+<GlassNotification
+  type="success"
+  title="Success!"
+  description="Your changes have been saved."
+  onClose={() => {}}
+/>
+```
+
+### glass-dock
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-dock.json"`
+
+macOS-style dock with glass background and magnification effects.
+
+```tsx
+import { GlassDock } from '@/components/innovative/glass-dock'
+
+<GlassDock
+  items={[
+    { icon: Home, label: 'Home', onClick: () => {} },
+    { icon: Settings, label: 'Settings', onClick: () => {} },
+  ]}
+/>
+```
+
+### glass-gauge
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-gauge.json"`
+
+Circular progress gauge with glass styling for metrics display.
+
+```tsx
+import { GlassGauge } from '@/components/innovative/glass-gauge'
+
+<GlassGauge value={75} max={100} label="CPU" />
+```
+
+### glass-morph-card
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-morph-card.json"`
 
 Card with morphing animation effects on hover/interaction.
 
-### Dock
-**Install:** `npx shadcn@latest add @einui/dock`
+```tsx
+import { GlassMorphCard } from '@/components/innovative/glass-morph-card'
 
-macOS-style dock with glass background and magnification.
+<GlassMorphCard>
+  <h3>Morphing Card</h3>
+  <p>Hover for effect</p>
+</GlassMorphCard>
+```
 
-### Gauge
-**Install:** `npx shadcn@latest add @einui/gauge`
+### glass-ripple
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-ripple.json"`
 
-Circular progress gauge with glass styling.
+Click ripple effect component for dynamic interactions.
 
-### Notification
-**Install:** `npx shadcn@latest add @einui/notification`
+```tsx
+import { GlassRipple } from '@/components/innovative/glass-ripple'
 
-Toast notifications with glass background.
+<GlassRipple>
+  <button>Click for ripple</button>
+</GlassRipple>
+```
 
-### Ripple
-**Install:** `npx shadcn@latest add @einui/ripple`
+### glass-spotlight
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-spotlight.json"`
 
-Click ripple effect component.
+Spotlight effect that highlights specific UI areas with glass morphism.
 
-### Timeline
-**Install:** `npx shadcn@latest add @einui/timeline`
+```tsx
+import { GlassSpotlight } from '@/components/innovative/glass-spotlight'
 
-Vertical timeline with glass nodes.
+<GlassSpotlight>
+  <div>Highlighted content</div>
+</GlassSpotlight>
+```
+
+### glass-timeline
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/glass-timeline.json"`
+
+Vertical timeline with glass nodes for chronological display.
+
+```tsx
+import { GlassTimeline, GlassTimelineItem } from '@/components/innovative/glass-timeline'
+
+<GlassTimeline>
+  <GlassTimelineItem date="2024-01-01" title="Event 1">
+    Description of event 1
+  </GlassTimelineItem>
+  <GlassTimelineItem date="2024-02-01" title="Event 2">
+    Description of event 2
+  </GlassTimelineItem>
+</GlassTimeline>
+```
+
+---
+
+## Widget Components (6)
+
+### base-widget
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/base-widget.json"`
+**Dependencies:** `framer-motion`
+
+Foundation component for all widgets. Required by other widget components.
+
+```tsx
+import { BaseWidget } from '@/components/widgets/base-widget'
+
+<BaseWidget title="Custom Widget" icon={Star}>
+  <div>Widget content</div>
+</BaseWidget>
+```
+
+### calendar-widget
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/calendar-widget.json"`
+**Dependencies:** `lucide-react`
+**Registry Dependencies:** `base-widget`
+
+Calendar widget for displaying dates, events, and scheduling.
+
+```tsx
+import { CalendarWidget } from '@/components/widgets/calendar-widget'
+
+<CalendarWidget
+  events={[
+    { date: new Date(), title: 'Meeting', type: 'work' },
+  ]}
+/>
+```
+
+### clock-widget
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/clock-widget.json"`
+**Dependencies:** `lucide-react`
+**Registry Dependencies:** `base-widget`
+
+Clock widgets including analog, digital, world clock, stopwatch, and timer.
+
+```tsx
+import { ClockWidget, AnalogClock, DigitalClock, WorldClock, Stopwatch, Timer } from '@/components/widgets/clock-widget'
+
+<ClockWidget variant="analog" />
+<ClockWidget variant="digital" />
+<WorldClock timezones={['America/New_York', 'Europe/London', 'Asia/Tokyo']} />
+<Stopwatch />
+<Timer initialSeconds={300} />
+```
+
+### weather-widget
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/weather-widget.json"`
+**Dependencies:** `lucide-react`
+**Registry Dependencies:** `base-widget`
+
+Weather display with temperature, conditions, forecasts, and hourly data.
+
+```tsx
+import { WeatherWidget } from '@/components/widgets/weather-widget'
+
+<WeatherWidget
+  location="New York"
+  temperature={72}
+  condition="sunny"
+  forecast={[
+    { day: 'Mon', high: 75, low: 60, condition: 'sunny' },
+    { day: 'Tue', high: 70, low: 55, condition: 'cloudy' },
+  ]}
+/>
+```
+
+### stats-widget
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/stats-widget.json"`
+**Dependencies:** `lucide-react`
+**Registry Dependencies:** `base-widget`
+
+Statistics and metrics widgets for data display and comparisons.
+
+```tsx
+import { StatsWidget, StatCard } from '@/components/widgets/stats-widget'
+
+<StatsWidget>
+  <StatCard
+    title="Revenue"
+    value="$12,345"
+    change={+12.5}
+    icon={DollarSign}
+  />
+  <StatCard
+    title="Users"
+    value="1,234"
+    change={-2.3}
+    icon={Users}
+  />
+</StatsWidget>
+```
+
+### stock-widget
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/stock-widget.json"`
+**Dependencies:** `lucide-react`
+**Registry Dependencies:** `base-widget`
+
+Stock market widget for prices, trends, and financial data.
+
+```tsx
+import { StockWidget } from '@/components/widgets/stock-widget'
+
+<StockWidget
+  symbol="AAPL"
+  price={178.50}
+  change={+2.35}
+  changePercent={+1.33}
+/>
+```
 
 ---
 
 ## Pre-built Blocks (5)
 
-### Sign Up Block
-**Install:** `npx shadcn@latest add @einui/signup-block`
+Blocks are complete page layouts that install to your `app/` directory.
 
-Complete registration form with glass styling.
+### admin-panel
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/admin-panel.json"`
+**Target:** `app/admin/page.tsx`
+**Dependencies:** `lucide-react`
+**Uses:** glass-card, glass-button, glass-input, glass-tabs, glass-dialog, glass-badge, glass-avatar, glass-progress, glass-switch
 
-### Login Block
-**Install:** `npx shadcn@latest add @einui/login-block`
+Complete admin dashboard with sidebar navigation, stats cards, data tables, and user management.
 
-Authentication form with glass morphism.
+### login-page
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/login-page.json"`
+**Target:** `app/auth/login/page.tsx`
+**Dependencies:** `lucide-react`
+**Uses:** glass-card, glass-button, glass-input, glass-checkbox
 
-### Forgot Password Block
-**Install:** `npx shadcn@latest add @einui/forgot-password-block`
+Login page with email/password, password visibility toggle, remember me, and social login buttons.
 
-Password reset flow with glass components.
+### signup-page
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/signup-page.json"`
+**Target:** `app/auth/signup/page.tsx`
+**Dependencies:** `lucide-react`
+**Uses:** glass-card, glass-button, glass-input, glass-checkbox
 
-### Pricing Block
-**Install:** `npx shadcn@latest add @einui/pricing-block`
+Sign up page with multi-step validation, password strength indicator, and terms agreement.
 
-Pricing table with glass tier cards.
+### forgot-password-page
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/forgot-password-page.json"`
+**Target:** `app/auth/forgot-password/page.tsx`
+**Dependencies:** `lucide-react`
+**Uses:** glass-card, glass-button, glass-input
 
-### Admin Panel Block
-**Install:** `npx shadcn@latest add @einui/admin-block`
+Password recovery page with email submission and confirmation state.
 
-Dashboard layout with glass sidebar and panels.
+### pricing-page
+**Install:** `npx shadcn@latest add "https://ui.eindev.ir/r/pricing-page.json"`
+**Target:** `app/pricing/page.tsx`
+**Dependencies:** `lucide-react`
+**Uses:** glass-card, glass-button, glass-badge, glass-switch
+
+Pricing page with plan tiers, billing toggle (monthly/yearly), feature comparison, and FAQ section.
+
+---
+
+## Dependency Summary
+
+| Dependency | Components Using It |
+|------------|---------------------|
+| `@radix-ui/react-avatar` | glass-avatar |
+| `@radix-ui/react-checkbox` | glass-checkbox |
+| `@radix-ui/react-dialog` | glass-dialog, glass-sheet |
+| `@radix-ui/react-popover` | glass-popover |
+| `@radix-ui/react-progress` | glass-progress |
+| `@radix-ui/react-radio-group` | glass-radio |
+| `@radix-ui/react-scroll-area` | glass-scroll-area |
+| `@radix-ui/react-select` | glass-select |
+| `@radix-ui/react-separator` | glass-separator |
+| `@radix-ui/react-slider` | glass-slider |
+| `@radix-ui/react-slot` | glass-button |
+| `@radix-ui/react-switch` | glass-switch |
+| `@radix-ui/react-tabs` | glass-tabs |
+| `@radix-ui/react-tooltip` | glass-tooltip |
+| `@radix-ui/react-alert-dialog` | glass-alert-dialog |
+| `class-variance-authority` | glass-badge, glass-button, glass-sheet |
+| `framer-motion` | glass-tabs, glass-textarea, glass-checkbox, glass-radio, glass-skeleton, base-widget |
+| `lucide-react` | glass-dialog, glass-select, glass-checkbox, glass-breadcrumb, glass-sheet, glass-command-palette, glass-notification, all widgets, all blocks |
