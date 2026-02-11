@@ -60,7 +60,7 @@ export default function LoginPageBlock() {
   }
 
   return (
-    <div className="min-full py-4 flex items-center justify-center bg-linear-to-br from-slate-950 via-purple-900 to-slate-950">
+    <div className="min-full py-4 flex items-center justify-center bg-linear-to-br from-[var(--color-7)] via-[var(--color-6)] to-[var(--color-7)]">
       <GlassCard className="w-full max-w-md">
         {/* Header with icon */}
         {/* Email input */}
@@ -125,10 +125,10 @@ const calculatePasswordStrength = (password: string): number => {
 
 const getStrengthColor = (strength: number) => {
   switch (strength) {
-    case 1: return 'bg-red-500'
-    case 2: return 'bg-orange-500'
-    case 3: return 'bg-yellow-500'
-    case 4: return 'bg-green-500'
+    case 1: return 'bg-[var(--destructive)]'
+    case 2: return 'bg-[var(--warning)]'
+    case 3: return 'bg-[var(--info)]'
+    case 4: return 'bg-[var(--success)]'
     default: return 'bg-white/20'
   }
 }
@@ -217,7 +217,7 @@ const plans = [
     features: ["Up to 5 projects", "2GB storage", "Basic analytics", "Single user"],
     cta: "Get Started",
     highlighted: false,
-    gradient: "from-blue-400 to-cyan-500",
+    gradient: "from-[var(--color-4)] to-[var(--color-3)]",
   },
   {
     name: "Professional",
@@ -236,7 +236,7 @@ const plans = [
     ],
     cta: "Subscribe Now",
     highlighted: true,
-    gradient: "from-purple-400 to-pink-500",
+    gradient: "from-[var(--color-5)] to-[var(--color-4)]",
   },
   {
     name: "Enterprise",
@@ -253,7 +253,7 @@ const plans = [
     ],
     cta: "Contact Sales",
     highlighted: false,
-    gradient: "from-orange-400 to-red-500",
+    gradient: "from-[var(--color-2)] to-[var(--destructive)]",
   },
 ]
 ```
@@ -333,19 +333,19 @@ npx shadcn@latest add "https://ui.eindev.ir/r/admin-panel.json"
 
 All blocks use a consistent background:
 ```tsx
-<div className="min-h-full flex items-center justify-center bg-linear-to-br from-slate-950 via-purple-900 to-slate-950">
+<div className="min-h-full flex items-center justify-center bg-linear-to-br from-[var(--color-7)] via-[var(--color-6)] to-[var(--color-7)]">
 ```
 
 Customize colors:
 ```tsx
 // Ocean theme
-bg-linear-to-br from-slate-950 via-blue-900 to-slate-950
+bg-linear-to-br from-[var(--color-7)] via-[var(--color-1)] to-[var(--color-7)]
 
 // Forest theme
-bg-linear-to-br from-slate-950 via-emerald-900 to-slate-950
+bg-linear-to-br from-[var(--color-7)] via-[var(--success)] to-[var(--color-7)]
 
 // Sunset theme
-bg-linear-to-br from-slate-950 via-orange-900 to-slate-950
+bg-linear-to-br from-[var(--color-7)] via-[var(--color-2)] to-[var(--color-7)]
 ```
 
 ### Form Submission Pattern
@@ -395,7 +395,7 @@ Blocks work together. Example auth flow:
 // app/auth/layout.tsx
 export default function AuthLayout({ children }) {
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-950 via-purple-900 to-slate-950">
+    <div className="min-h-screen bg-linear-to-br from-[var(--color-7)] via-[var(--color-6)] to-[var(--color-7)]">
       {children}
     </div>
   )

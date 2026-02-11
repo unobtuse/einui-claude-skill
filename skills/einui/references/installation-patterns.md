@@ -79,11 +79,11 @@ In `app/globals.css`:
 
 @layer base {
   :root {
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-bg: oklch(from var(--color-7) l c h / 0.4);
+    --glass-border: oklch(from var(--color-3) l c h / 0.15);
     --glass-blur: 16px;
-    --glow-cyan: rgba(6, 182, 212, 0.3);
-    --glow-purple: rgba(147, 51, 234, 0.3);
+    --glow-primary: oklch(from var(--color-4) l c h / 0.3);
+    --glow-secondary: oklch(from var(--color-5) l c h / 0.3);
   }
 }
 ```

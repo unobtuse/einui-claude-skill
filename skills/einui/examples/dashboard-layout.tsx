@@ -61,8 +61,8 @@ function StatCard({ title, value, change, icon, trend }: StatCardProps) {
             variant={trend === "up" ? "default" : "destructive"}
             className={
               trend === "up"
-                ? "bg-green-500/20 text-green-400 border-green-400/30"
-                : "bg-red-500/20 text-red-400 border-red-400/30"
+                ? "bg-[var(--success)]/20 text-[var(--success)] border-[var(--success)]/30"
+                : "bg-[var(--destructive)]/20 text-[var(--destructive)] border-[var(--destructive)]/30"
             }
           >
             {trend === "up" ? (
@@ -144,9 +144,9 @@ interface ProjectProgress {
 
 function ProjectsProgress({ projects }: { projects: ProjectProgress[] }) {
   const statusColors = {
-    "on-track": "text-green-400",
-    "at-risk": "text-yellow-400",
-    completed: "text-cyan-400",
+    "on-track": "text-[var(--success)]",
+    "at-risk": "text-[var(--warning)]",
+    completed: "text-[var(--color-2)]",
   }
 
   return (
@@ -219,7 +219,7 @@ function Sidebar({
           <div className="p-6 border-b border-white/10">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500">
+                <div className="p-2 rounded-lg bg-gradient-to-br from-[var(--color-4)] to-[var(--color-5)]">
                   <LayoutDashboard className="w-5 h-5 text-white" />
                 </div>
                 <span className="text-lg font-semibold text-white">Dashboard</span>
@@ -241,7 +241,7 @@ function Sidebar({
                 {item.icon}
                 <span className="flex-1">{item.label}</span>
                 {item.badge && (
-                  <span className="px-2 py-0.5 text-xs rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-400/30">
+                  <span className="px-2 py-0.5 text-xs rounded-full bg-[var(--color-4)]/20 text-[var(--color-4)] border border-[var(--color-4)]/30">
                     {item.badge}
                   </span>
                 )}
@@ -287,28 +287,28 @@ export default function DashboardLayout() {
       title: "Total Revenue",
       value: "$45,231.89",
       change: 20.1,
-      icon: <DollarSign className="w-5 h-5 text-cyan-400" />,
+      icon: <DollarSign className="w-5 h-5 text-[var(--color-4)]" />,
       trend: "up",
     },
     {
       title: "Active Users",
       value: "2,350",
       change: 15.3,
-      icon: <Users className="w-5 h-5 text-purple-400" />,
+      icon: <Users className="w-5 h-5 text-[var(--color-2)]" />,
       trend: "up",
     },
     {
       title: "Sales",
       value: "+12,234",
       change: 4.5,
-      icon: <TrendingUp className="w-5 h-5 text-green-400" />,
+      icon: <TrendingUp className="w-5 h-5 text-[var(--success)]" />,
       trend: "up",
     },
     {
       title: "Bounce Rate",
       value: "24.3%",
       change: 2.1,
-      icon: <Activity className="w-5 h-5 text-orange-400" />,
+      icon: <Activity className="w-5 h-5 text-[var(--warning)]" />,
       trend: "down",
     },
   ]
@@ -352,7 +352,7 @@ export default function DashboardLayout() {
   ]
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-950 via-purple-900 to-slate-950">
+    <div className="min-h-screen bg-linear-to-br from-[var(--color-7)] via-[var(--color-6)] to-[var(--color-7)]">
       <div className="flex">
         {/* Sidebar */}
         <Sidebar items={navItems} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
@@ -377,7 +377,7 @@ export default function DashboardLayout() {
               <div className="flex items-center gap-4">
                 <GlassButton variant="ghost" size="icon" className="relative">
                   <Bell className="w-5 h-5" />
-                  <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-cyan-400" />
+                  <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[var(--color-4)]" />
                 </GlassButton>
                 <GlassAvatar className="h-9 w-9">
                   <GlassAvatarFallback>JD</GlassAvatarFallback>

@@ -74,11 +74,11 @@ export function CardGrid() {
 // Hero Section with Glass Card
 export function HeroSection() {
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="relative min-h-screen bg-gradient-to-br from-[var(--color-7)] via-[var(--color-6)] to-[var(--color-7)]">
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-purple-500/30 blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-cyan-500/30 blur-3xl" />
+        <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-[var(--color-5)]/30 blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-[var(--color-4)]/30 blur-3xl" />
       </div>
 
       {/* Content */}

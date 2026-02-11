@@ -102,8 +102,8 @@ export function ContactForm() {
     return (
       <GlassCard className="max-w-md mx-auto">
         <GlassCardContent className="py-12 text-center">
-          <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4">
-            <Check className="w-8 h-8 text-green-400" />
+          <div className="w-16 h-16 rounded-full bg-[var(--success)]/20 flex items-center justify-center mx-auto mb-4">
+            <Check className="w-8 h-8 text-[var(--success)]" />
           </div>
           <h3 className="text-xl font-semibold text-white mb-2">Message Sent!</h3>
           <p className="text-white/60 mb-6">
@@ -131,17 +131,17 @@ export function ContactForm() {
           {/* Name Input */}
           <div className="space-y-2">
             <label htmlFor="name" className="text-sm font-medium text-white/80">
-              Name <span className="text-red-400">*</span>
+              Name <span className="text-[var(--destructive)]">*</span>
             </label>
             <GlassInput
               id="name"
               placeholder="Your name"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className={errors.name ? "border-red-400/50" : ""}
+              className={errors.name ? "border-[var(--destructive)]/50" : ""}
             />
             {errors.name && (
-              <p className="text-sm text-red-400 flex items-center gap-1">
+              <p className="text-sm text-[var(--destructive)] flex items-center gap-1">
                 <AlertCircle className="w-3 h-3" />
                 {errors.name}
               </p>
@@ -151,7 +151,7 @@ export function ContactForm() {
           {/* Email Input */}
           <div className="space-y-2">
             <label htmlFor="email" className="text-sm font-medium text-white/80">
-              Email <span className="text-red-400">*</span>
+              Email <span className="text-[var(--destructive)]">*</span>
             </label>
             <GlassInput
               id="email"
@@ -159,10 +159,10 @@ export function ContactForm() {
               placeholder="your@email.com"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className={errors.email ? "border-red-400/50" : ""}
+              className={errors.email ? "border-[var(--destructive)]/50" : ""}
             />
             {errors.email && (
-              <p className="text-sm text-red-400 flex items-center gap-1">
+              <p className="text-sm text-[var(--destructive)] flex items-center gap-1">
                 <AlertCircle className="w-3 h-3" />
                 {errors.email}
               </p>
@@ -191,7 +191,7 @@ export function ContactForm() {
           {/* Message Textarea */}
           <div className="space-y-2">
             <label htmlFor="message" className="text-sm font-medium text-white/80">
-              Message <span className="text-red-400">*</span>
+              Message <span className="text-[var(--destructive)]">*</span>
             </label>
             <GlassTextarea
               id="message"
@@ -199,10 +199,10 @@ export function ContactForm() {
               rows={4}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className={errors.message ? "border-red-400/50" : ""}
+              className={errors.message ? "border-[var(--destructive)]/50" : ""}
             />
             {errors.message && (
-              <p className="text-sm text-red-400 flex items-center gap-1">
+              <p className="text-sm text-[var(--destructive)] flex items-center gap-1">
                 <AlertCircle className="w-3 h-3" />
                 {errors.message}
               </p>
@@ -294,7 +294,7 @@ export function SettingsForm() {
         <div className="flex items-center justify-between">
           <GlassCardTitle>Settings</GlassCardTitle>
           {saved && (
-            <GlassBadge variant="default" className="bg-green-500/20 text-green-400 border-green-400/30">
+            <GlassBadge variant="default" className="bg-[var(--success)]/20 text-[var(--success)] border-[var(--success)]/30">
               <Check className="w-3 h-3 mr-1" />
               Saved
             </GlassBadge>
@@ -440,7 +440,7 @@ export function SettingsForm() {
 
 export default function FormPatternsPage() {
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-950 via-purple-900 to-slate-950 p-8">
+    <div className="min-h-screen bg-linear-to-br from-[var(--color-7)] via-[var(--color-6)] to-[var(--color-7)] p-8">
       <div className="max-w-4xl mx-auto space-y-12">
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold text-white">Form Patterns</h1>

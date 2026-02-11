@@ -143,27 +143,128 @@ npm install @radix-ui/react-dialog @radix-ui/react-tabs @radix-ui/react-select
 | `lucide-react` | glass-dialog, glass-select, glass-checkbox, glass-breadcrumb, glass-sheet, glass-command-palette, glass-notification, all widgets, all blocks |
 | `class-variance-authority` | glass-badge, glass-button, glass-sheet |
 
-## Theming with CSS Variables
+## CRITICAL: Collect Anchor Color BEFORE Any Design Work
 
-Add glass effect variables to `globals.css`:
+**BEFORE designing any UI, layout, or component, you MUST ask the user for their brand/anchor color.**
+
+1. Ask: "What is your brand's primary color?" Accept hex, rgb, color name, or OKLCH values
+2. If the user has no preference, ask them to describe their brand personality or aesthetic (warm, cool, bold, muted, earthy, etc.) and pick an anchor color for them
+3. **NEVER** proceed with UI design until you have an anchor color
+4. **NEVER** fall back to cyan, purple, or blue — those are the hallmarks of generic AI design
+
+## Theming with OKLCH Color Palette (MANDATORY)
+
+Every Ein UI project uses a **7-color OKLCH palette** derived from the user's anchor color. There are NO default themes. Every project gets a unique palette.
+
+### Step 1: Generate the 7-Color Palette from Anchor
+
+Given an anchor color, convert it to OKLCH format: `oklch(L_anchor C_anchor H_anchor)`.
+
+Use the [OKLCH Color Palette Generator](https://gloss-modern-smile.figma.site/) if a browser is available. Otherwise, generate algorithmically:
+
+**The 7 lightness stops** (fixed):
+`L = [0.95, 0.85, 0.73, 0.60, 0.48, 0.35, 0.20]`
+
+**Hue**: Fixed at `H_anchor` for all 7 colors.
+
+**Chroma MUST vary** — this is what separates professional palettes from AI slop. Constant chroma creates neon lights at high lightness and muddy darks at low lightness. Instead, taper chroma away from the anchor:
+
+```
+For each lightness stop L:
+  distance = |L - L_anchor|
+  max_distance = max(|0.20 - L_anchor|, |0.95 - L_anchor|)
+  factor = 1 - (distance / max_distance) * 0.7
+  C = C_anchor * factor
+```
+
+**Worked example** — anchor `oklch(0.60 0.15 280)` (a purple):
+
+| Var | L | Distance | Factor | C | Result |
+|-----|------|----------|--------|-------|--------|
+| `--color-1` | 0.95 | 0.35 | 0.30 | 0.045 | `oklch(0.95 0.045 280)` |
+| `--color-2` | 0.85 | 0.25 | 0.50 | 0.075 | `oklch(0.85 0.075 280)` |
+| `--color-3` | 0.73 | 0.13 | 0.77 | 0.116 | `oklch(0.73 0.116 280)` |
+| `--color-4` | 0.60 | 0.00 | 1.00 | 0.150 | `oklch(0.60 0.15 280)` ← anchor |
+| `--color-5` | 0.48 | 0.12 | 0.79 | 0.119 | `oklch(0.48 0.119 280)` |
+| `--color-6` | 0.35 | 0.25 | 0.56 | 0.084 | `oklch(0.35 0.084 280)` |
+| `--color-7` | 0.20 | 0.40 | 0.30 | 0.045 | `oklch(0.20 0.045 280)` |
+
+Notice how chroma peaks at the anchor (0.15) and tapers naturally toward the extremes (~0.045). This is what makes palettes look designed, not generated.
+
+### Step 2: Set 7 Master Colors + Semantic Mappings in globals.css
 
 ```css
 :root {
-  /* Glass Effects */
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  /* === MASTER COLOR PALETTE (OKLCH) === */
+  /* Replace these with YOUR generated values from Step 1 */
+  --color-1: oklch(0.95 0.045 280);   /* Lightest */
+  --color-2: oklch(0.85 0.075 280);   /* Light */
+  --color-3: oklch(0.73 0.116 280);   /* Medium light */
+  --color-4: oklch(0.60 0.15 280);    /* Anchor / Primary */
+  --color-5: oklch(0.48 0.119 280);   /* Medium dark */
+  --color-6: oklch(0.35 0.084 280);   /* Dark */
+  --color-7: oklch(0.20 0.045 280);   /* Darkest */
+
+  /* === SEMANTIC MAPPINGS (reference master colors only) === */
+  --background: var(--color-7);
+  --foreground: var(--color-1);
+  --primary: var(--color-4);
+  --primary-foreground: var(--color-1);
+  --secondary: var(--color-6);
+  --secondary-foreground: var(--color-2);
+  --accent: var(--color-5);
+  --accent-foreground: var(--color-1);
+  --muted: var(--color-6);
+  --muted-foreground: var(--color-3);
+  --border: var(--color-6);
+  --ring: var(--color-4);
+  --card: var(--color-7);
+  --card-foreground: var(--color-1);
+
+  /* === SEMANTIC STATUS COLORS (fixed hues, match anchor lightness/chroma intensity) === */
+  --destructive: oklch(0.55 0.22 27);
+  --success: oklch(0.60 0.17 145);
+  --warning: oklch(0.75 0.15 85);
+
+  /* === GLASS EFFECTS (derived from master colors) === */
+  --glass-bg: oklch(from var(--color-7) l c h / 0.4);
+  --glass-border: oklch(from var(--color-3) l c h / 0.15);
   --glass-blur: 16px;
+  --glow-primary: oklch(from var(--color-4) l c h / 0.3);
+  --glow-secondary: oklch(from var(--color-5) l c h / 0.3);
 
-  /* Glow Colors */
-  --glow-cyan: rgba(6, 182, 212, 0.3);
-  --glow-purple: rgba(147, 51, 234, 0.3);
-  --glow-pink: rgba(236, 72, 153, 0.3);
-
-  /* Text Colors */
-  --text-primary: rgba(255, 255, 255, 0.95);
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --text-muted: rgba(255, 255, 255, 0.5);
+  /* === TEXT (reference master colors) === */
+  --text-primary: var(--color-1);
+  --text-secondary: var(--color-2);
+  --text-muted: var(--color-3);
 }
+```
+
+### Step 3: Use ONLY Master Colors in Components
+
+```tsx
+// CORRECT — references master palette
+<div className="bg-[var(--color-7)] text-[var(--color-1)]">
+<GlassButton className="bg-[var(--color-4)] hover:bg-[var(--color-5)]">
+<span className="text-[var(--destructive)]">Error message</span>
+<span className="text-[var(--success)]">Success!</span>
+
+// FORBIDDEN — hardcoded colors
+<div className="bg-cyan-500">              // ❌ named Tailwind colors
+<div className="text-purple-400">          // ❌ named Tailwind colors
+<div style={{ color: '#3b82f6' }}>         // ❌ hex colors
+<div className="from-slate-950 via-purple-900"> // ❌ generic gradients
+```
+
+### Background Gradients (derived from palette)
+
+```tsx
+// Page background — use darkest colors from YOUR palette
+<div className="bg-gradient-to-br from-[var(--color-7)] via-[var(--color-6)] to-[var(--color-7)]">
+
+// Decorative blur circles — use mid-palette colors
+<div className="absolute rounded-full bg-[var(--color-4)]/30 blur-3xl" />
+<div className="absolute rounded-full bg-[var(--color-5)]/30 blur-3xl" />
 ```
 
 ### Glow Effect Utility
@@ -174,8 +275,8 @@ Add glass effect variables to `globals.css`:
   position: absolute;
   inset: -1px;
   background: linear-gradient(135deg,
-    rgba(6, 182, 212, 0.3),
-    rgba(147, 51, 234, 0.3)
+    var(--glow-primary),
+    var(--glow-secondary)
   );
   border-radius: inherit;
   opacity: 0.7;
@@ -183,6 +284,10 @@ Add glass effect variables to `globals.css`:
   filter: blur(8px);
 }
 ```
+
+### Retheme the Entire App
+
+To change the color scheme, recalculate the 7 OKLCH values from a new anchor color. Keep the same lightness stops, change hue and recalculate chroma with the taper formula. Every component updates automatically.
 
 See `references/theming-guide.md` for complete theming documentation.
 
@@ -250,15 +355,20 @@ Components install to these directories:
 | Widgets | `@/components/widgets/` |
 | Blocks | `app/` directory (pages) |
 
-## Color Schemes
+## Color Schemes — BANNED DEFAULTS
 
-Three built-in palettes:
+**The following legacy themes are BANNED. Never use them:**
+- ~~Ocean~~ (cyan/blue) — BANNED
+- ~~Aurora~~ (purple/pink) — BANNED
+- ~~Forest~~ (green/teal) — BANNED
 
-| Scheme | Colors | Use Case |
-|--------|--------|----------|
-| Ocean | Cyan, Blue | Tech, SaaS |
-| Aurora | Purple, Pink | Creative, Design |
-| Forest | Emerald, Teal | Nature, Wellness |
+**The following patterns are FORBIDDEN in all Ein UI code:**
+- `--glow-cyan`, `--glow-purple`, `--glow-pink`, or any named glow color
+- `rgba(...)` or `#hex` values in CSS variables — use `oklch()` only
+- `bg-cyan-*`, `text-purple-*`, `from-slate-* via-purple-*`, or any hardcoded Tailwind color
+- `from-slate-950 via-purple-900 to-slate-950` or similar generic gradients
+
+**ALWAYS**: Generate a custom OKLCH palette from the user's anchor color. Use ONLY `var(--color-1)` through `var(--color-7)` and the semantic mappings.
 
 ## Implementation Workflow
 
@@ -318,5 +428,5 @@ See `references/custom-themes.md` for full documentation.
 - **`examples/form-patterns.tsx`** - Complete form examples
 - **`examples/dashboard-layout.tsx`** - Dashboard with widgets
 - **`examples/command-palette-setup.tsx`** - Command palette integration
-- **`examples/ocean-palette.json`** - Example OKLCH palette
+- **`examples/example-palette.json`** - Example OKLCH palette (7-color, chroma-varying)
 - **`examples/dark-mode-setup.md`** - Dark mode configuration

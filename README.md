@@ -1,6 +1,29 @@
-# Ein UI Plugin for Claude Code
+# Ein UI Skill for Claude Code
 
-Claude Code plugin providing guidance for Ein UI, a liquid glass morphism component library for React/Next.js.
+Claude Code skill providing guidance for Ein UI, a liquid glass morphism component library for React/Next.js.
+
+## What's New: OKLCH Color Palette System
+
+This skill now enforces **custom OKLCH color palettes** derived from the user's brand/anchor color. No more generic cyan/purple "AI slop" — every project gets a unique, professional palette.
+
+### How It Works
+
+1. The skill prompts for the user's **anchor color** before any design work
+2. A **7-color OKLCH palette** is generated using a chroma-varying algorithm
+3. All components, glows, and backgrounds reference the palette via CSS variables (`--color-1` through `--color-7`)
+4. Zero hardcoded colors — the entire theme changes by updating one anchor color
+
+### Color Science
+
+The palette uses **chroma tapering** — peak saturation at the anchor lightness, naturally fading toward light and dark extremes. This is the key difference between professional and AI-generated palettes.
+
+```
+Anchor: oklch(0.60 0.15 280)  →  Full chroma at mid-lightness
+Light:  oklch(0.95 0.045 280) →  Subtle, not neon
+Dark:   oklch(0.20 0.045 280) →  Rich, not muddy
+```
+
+Use the [OKLCH Color Palette Generator](https://gloss-modern-smile.figma.site/) or the built-in algorithm in the skill to generate palettes.
 
 ## Installation
 
@@ -48,15 +71,16 @@ cp -r einui-claude-skill/skills/einui/* .claude/skills/einui/
 
 ## Features
 
-- Component installation guidance
-- Theming and CSS variables documentation
-- Dark mode setup patterns
-- Complete component catalog reference
-- Usage examples
+- **OKLCH Color System** — Mandatory anchor-based palette generation with chroma tapering
+- **Component Installation** — Registry-based install for all 42 Ein UI components
+- **Theming Guide** — OKLCH-only CSS variable configuration
+- **Dark Mode** — Built-in dark/light mode support via palette inversion
+- **Palette Converter** — TypeScript script to generate CSS from OKLCH palettes
+- **Usage Examples** — Dashboard, forms, command palette, and more
 
 ## Skill Triggers
 
-This plugin's skill activates when users ask to:
+This skill activates when users ask to:
 - "add Ein UI components"
 - "install glass card"
 - "use liquid glass UI"
@@ -69,10 +93,13 @@ This plugin's skill activates when users ask to:
 - **Main Skill:** `skills/einui/SKILL.md`
 - **Components Catalog:** `skills/einui/references/components-catalog.md`
 - **Theming Guide:** `skills/einui/references/theming-guide.md`
+- **Custom Themes:** `skills/einui/references/custom-themes.md`
 - **Installation Patterns:** `skills/einui/references/installation-patterns.md`
+- **Palette Converter:** `skills/einui/scripts/palette-to-einui.ts`
 
 ## Ein UI Resources
 
 - Website: https://ui.eindev.ir
 - GitHub: https://github.com/ehsanghaffar/einui
+- OKLCH Palette Generator: https://gloss-modern-smile.figma.site/
 - License: MIT

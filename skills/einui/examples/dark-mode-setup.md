@@ -106,20 +106,20 @@ export function ThemeToggle() {
 @layer base {
   :root {
     /* Light mode glass effect */
-    --glass-bg: rgba(255, 255, 255, 0.6);
-    --glass-border: rgba(0, 0, 0, 0.1);
+    --glass-bg: oklch(from var(--color-7) l c h / 0.05);
+    --glass-border: oklch(from var(--color-5) l c h / 0.1);
     --glass-blur: 16px;
-    --text-primary: rgba(0, 0, 0, 0.9);
-    --text-secondary: rgba(0, 0, 0, 0.7);
+    --text-primary: var(--color-7);
+    --text-secondary: var(--color-6);
   }
 
   .dark {
     /* Dark mode glass effect */
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-bg: oklch(from var(--color-7) l c h / 0.4);
+    --glass-border: oklch(from var(--color-3) l c h / 0.15);
     --glass-blur: 16px;
-    --text-primary: rgba(255, 255, 255, 0.95);
-    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-primary: var(--color-1);
+    --text-secondary: var(--color-2);
   }
 }
 ```

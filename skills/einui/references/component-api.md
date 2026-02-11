@@ -26,10 +26,10 @@ const glassButtonVariants = cva(
     variants: {
       variant: {
         default: "bg-white/20 backdrop-blur-xl border border-white/30 text-white",
-        primary: "bg-linear-to-r from-cyan-500/80 via-blue-500/80 to-purple-500/80",
+        primary: "bg-linear-to-r from-[var(--color-4)]/80 via-[var(--color-5)]/80 to-[var(--color-3)]/80",
         outline: "bg-transparent border-2 border-white/40 text-white",
         ghost: "bg-transparent text-white/70 hover:bg-white/10",
-        destructive: "bg-red-500/30 border border-red-400/40 text-red-100",
+        destructive: "bg-[var(--destructive)]/30 border border-[var(--destructive)]/40 text-[var(--color-1)]",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -509,7 +509,7 @@ interface GlassInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 - Base: `h-10 w-full rounded-xl px-4 py-2 text-sm`
 - Glass: `bg-white/10 backdrop-blur-xl border border-white/20`
-- Focus: `border-white/40 bg-white/15 ring-2 ring-cyan-400/30`
+- Focus: `border-white/40 bg-white/15 ring-2 ring-[var(--color-4)]/30`
 - Placeholder: `text-white/40`
 
 ### Usage Examples
@@ -547,7 +547,7 @@ const glassBadgeVariants = cva(
       variant: {
         default: "bg-white/20 backdrop-blur-xl border border-white/30 text-white",
         secondary: "bg-white/10 border border-white/20 text-white/80",
-        destructive: "bg-red-500/30 border border-red-400/40 text-red-100",
+        destructive: "bg-[var(--destructive)]/30 border border-[var(--destructive)]/40 text-[var(--color-1)]",
         outline: "bg-transparent border border-white/40 text-white/80",
       },
     },

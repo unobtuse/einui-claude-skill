@@ -415,7 +415,7 @@ function useCommandPalette() {
 
 export default function CommandPaletteSetup() {
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-950 via-purple-900 to-slate-950 p-8">
+    <div className="min-h-screen bg-linear-to-br from-[var(--color-7)] via-[var(--color-6)] to-[var(--color-7)] p-8">
       <div className="max-w-4xl mx-auto space-y-12">
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold text-white">Command Palette Examples</h1>
