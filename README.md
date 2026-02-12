@@ -103,3 +103,10 @@ This skill activates when users ask to:
 - GitHub: https://github.com/ehsanghaffar/einui
 - OKLCH Palette Generator: https://gloss-modern-smile.figma.site/
 - License: MIT
+
+---
+
+<div align="center">
+<p><a href="https://gabemade.it"><img src="https://gabemade.it/images/logo-darkmode.svg" alt="GabeMade.it" style="max-width: 100%;"></a></p>
+<p><strong>Made by <a href="https://gabemade.it">GabeMade.it</a> with ❤️</strong></p>
+</div>
